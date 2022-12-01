@@ -8,6 +8,7 @@ api_key = os.getenv('api_key')
 show_full_urls = os.getenv('show_full_urls') == '1'
 show_dates = os.getenv('show_dates') == '1'
 collection_id = os.getenv('collection')
+link_descriptions = os.getenv('link_descriptions') == '1'
 
 q = '{query}'
 
@@ -61,6 +62,8 @@ def format_subtitle(link):
         subtitle = format_url(link['url']) + date
     else:
         subtitle = link['host'] + date
+    if 'comment' in link and link['comment'] != "":
+      subtitle = subtitle + ' • ' + link['comment']
     return subtitle
 
 
@@ -103,6 +106,8 @@ def get_links():
       'limit': 30,
       'collection': collection_id
   }
+  if link_descriptions:
+    payload['linkDescriptions'] = 'yes'
   data = urllib.parse.urlencode(payload)
   req = urllib.request.Request('http://127.0.0.1:6391/search?' + data, headers=headers)
   try:

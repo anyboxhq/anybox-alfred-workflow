@@ -14,6 +14,8 @@ This workflow is developed and tested under Alfred 5.
 
 3. Go to “Alfred › Workflows › Anybox › Configure Workflow” to enter API key.
 
+4. Type in default keyword “sd[space]” to search links in Anybox.
+
 For this workflow to work, Anybox needs to be running.
 
 ## Supported Actions

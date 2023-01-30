@@ -54,7 +54,11 @@ Open an issue.
 
 ### “Search Links” Action Not Working
 
-Make sure you have a valid Python3 at `/usr/bin/python3`. To verify, open Termimal.app and type in `/usr/bin/python3`. A valid out put should look like this:
+Anybox workflow doesn’t require any third-party dependencies. These actions are developed with shell script and Python 3, which are pre-installed on macOS.
+
+However, in some cases the Python 3 on your Mac maybe not working properly.
+
+So you need to make sure your Mac have a valid Python 3 at `/usr/bin/python3`. To verify, open Termimal.app and type in `/usr/bin/python3`. A valid output should look like this:
 
 ```
 Python 3.9.6 (default, Oct 18 2022, 12:41:40) 
@@ -63,10 +67,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 
-If your output looks like this:
+If your terminal’s output looks like this:
 ```
 xcrun: error: invalid active developer path (/Library/Developer/commandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
 ```
 
 You can fix this with the following instruction from Stack Exchange: [Why am I getting an “invalid active developer path” when attempting to use Git after upgrading to macOS Ventura?](https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a/254381#254381)
-

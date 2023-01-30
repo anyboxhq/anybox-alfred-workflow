@@ -46,6 +46,27 @@ For this workflow to work, Anybox needs to be running.
 
 13. Show List
 
-## Feature Requests
+## Feature Requests or Bug Reports
 
 Open an issue.
+
+## Trouble Shooting
+
+### “Search Links” Action Not Working
+
+Make sure you have a valid Python3 at `/usr/bin/python3`. To verify, open Termimal.app and type in `/usr/bin/python3`. A valid out put should look like this:
+
+```
+Python 3.9.6 (default, Oct 18 2022, 12:41:40) 
+[Clang 14.0.0 (clang-1400.0.29.202)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+
+If your output looks like this:
+```
+xcrun: error: invalid active developer path (/Library/Developer/commandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+```
+
+You can fix this with the following instruction from Stack Exchange: [Why am I getting an “invalid active developer path” when attempting to use Git after upgrading to macOS Ventura?](https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a/254381#254381)
+

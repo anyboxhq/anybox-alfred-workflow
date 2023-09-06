@@ -4,7 +4,7 @@ Search links, save links, show Quick Save, toggle Anydock or do other things rig
 
 ## Supported Version
 
-This workflow is developed and tested under Alfred 5.
+This workflow is developed and tested with Anybox 2.0 and Alfred 5.
 
 ## Install
 
@@ -26,11 +26,11 @@ For this workflow to work, Anybox needs to be running.
 
 3. Save Current Tab
 
-4. Save Current Tab with Collections
+4. Save Current Tab with Tags
 
 5. Save Clipboard
 
-6. Save Clipboard with Collections
+6. Save Clipboard with Tags
 
 7. Save Note
 

@@ -20,8 +20,8 @@ error_feedback = {
   ]
 }
 
-def get_collections():
-  req = request.Request('http://127.0.0.1:6391/collections')
+def get_tags():
+  req = request.Request('http://127.0.0.1:6391/tags')
   try: 
     resp = request.urlopen(req) 
     items = json.loads(resp.read())
@@ -35,7 +35,7 @@ def get_collections():
         'title': name,
         'arg': [id],
         'icon': {
-          'path': './List Icons/collection.png'
+          'path': './List Icons/tag.png'
         },
       }
       result['items'].append(item)
@@ -45,4 +45,4 @@ def get_collections():
   except urllib.error.URLError as e:
     sys.stdout.write(json.dumps(error_feedback))
 
-get_collections()
+get_tags()

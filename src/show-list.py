@@ -6,8 +6,8 @@ def list_icon(type, id):
   url = './List Icons/'
   if type == 'preset':
     return url + id + '.png'
-  elif type == 'collection':
-    return url + 'collection.png'
+  elif type == 'tag':
+    return url + 'tag.png'
   elif type == 'filter':
     return url + 'filter.png'
   else:
@@ -16,8 +16,8 @@ def list_icon(type, id):
 def list_url(type, id):
   if type == 'preset':
     return 'anybox://show?id=' + id
-  elif type == 'collection':
-    return 'anybox://collection/' + id
+  elif type == 'tag':
+    return 'anybox://tag/' + id
   elif type == 'filter':
     return 'anybox://filter/' + id
   else:
@@ -26,8 +26,8 @@ def list_url(type, id):
 def list_type_name(type):
   if type == 'preset':
     return 'Preset'
-  elif type == 'collection':
-    return 'Collection'
+  elif type == 'tag':
+    return 'Tag'
   elif type == 'filter':
     return "Smart List"
   else:
@@ -44,7 +44,7 @@ def get_items(type):
     list_type = list_item['type']
     icon = list_icon(list_type, id)
     url = list_url(list_item['type'], id)
-    subtitle = list_type_name(list_type) + ' • ' + str(list_item['count']) + ' items'
+    subtitle = list_type_name(list_type)
     item = {
       'title': list_item['name'],
       'subtitle':  subtitle,
@@ -62,15 +62,15 @@ def get_presets():
 def get_filters():
   return get_items('filters')
 
-def get_collections():
-  return get_items('collections')
+def get_tags():
+  return get_items('tags')
 
 presets = get_presets()
 filters = get_filters()
-collections = get_collections()
+tags = get_tags()
 
 all =  {
-  'items': presets + filters + collections
+  'items': presets + filters + tags
 }
 sys.stdout.write(json.dumps(all))
 

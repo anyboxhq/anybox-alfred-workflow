@@ -7,7 +7,7 @@ from datetime import datetime
 api_key = os.getenv('api_key')
 show_full_urls = os.getenv('show_full_urls') == '1'
 show_dates = os.getenv('show_dates') == '1'
-show_collections = os.getenv('show_collections') == '1'
+show_tags = os.getenv('show_tags') == '1'
 link_descriptions = os.getenv('link_descriptions') == '1'
 
 q = ''
@@ -161,13 +161,13 @@ def get_links():
   except urllib.error.URLError as e:
     throw_error()
 
-def get_collections():
+def get_tags():
   payload = {
     'q': q,
     'limit': 5,
   }
   data = urllib.parse.urlencode(payload)
-  req = urllib.request.Request('http://127.0.0.1:6391/collections?' + data)
+  req = urllib.request.Request('http://127.0.0.1:6391/tags?' + data)
   try: 
     resp = urllib.request.urlopen(req) 
     items = json.loads(resp.read())
@@ -175,15 +175,14 @@ def get_collections():
     for list_item in items:
       id = list_item['id']
       name = list_item['name']
-      subtitle = 'Collection' + ' • ' + str(list_item['count']) + ' items'
-      anybox_url = 'anybox://collection/' + id
+      anybox_url = 'anybox://tag/' + id
       markdown_url = '[' + name + ']' + '(' + anybox_url + ')'
       item = {
         'title': name,
-        'subtitle': subtitle,
+        'subtitle': 'Tag',
         'arg': [id],
         'icon': {
-          'path': './List Icons/collection.png'
+          'path': './List Icons/tag.png'
         },
         'mods': {
           'alt': {
@@ -206,11 +205,11 @@ def get_collections():
     throw_error()
 
 
-collections = []
-if show_collections:
-  collections = get_collections()
+tags = []
+if show_tags:
+  tags = get_tags()
 links = get_links()
 result = {
-  'items': collections + links
+  'items': tags + links
 }
 sys.stdout.write(json.dumps(result))

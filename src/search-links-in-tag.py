@@ -7,7 +7,7 @@ from datetime import datetime
 api_key = os.getenv('api_key')
 show_full_urls = os.getenv('show_full_urls') == '1'
 show_dates = os.getenv('show_dates') == '1'
-collection_id = os.getenv('collection')
+tag_id = os.getenv('tag')
 link_descriptions = os.getenv('link_descriptions') == '1'
 
 q = '{query}'
@@ -104,7 +104,7 @@ def get_links():
   payload = {
       'q': q,
       'limit': 30,
-      'collection': collection_id
+      'tag': tag_id
   }
   if link_descriptions:
     payload['linkDescriptions'] = 'yes'

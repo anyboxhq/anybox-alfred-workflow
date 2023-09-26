@@ -8,7 +8,11 @@ api_key = os.getenv('api_key')
 show_full_urls = os.getenv('show_full_urls') == '1'
 show_dates = os.getenv('show_dates') == '1'
 show_tags = os.getenv('show_tags') == '1'
-link_descriptions = os.getenv('link_descriptions') == '1'
+show_folders = os.getenv('show_folders') == '1'
+limit = 5
+
+if show_folders and show_tags:
+  limit = 3
 
 q = ''
 if len(sys.argv) >= 2:
@@ -34,12 +38,17 @@ def less_than_a_week(date):
         return True
     else:
         return False
+    
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
 
 def format_url(url):
     if url.startswith('https://'):
-        return url.removeprefix('https://')
+        return remove_prefix(url, 'https://')
     elif url.startswith('http://'):
-        return url.removeprefix('http://')
+        return url.remove_prefix(url, 'http://')
     else:
         return url
 
@@ -107,8 +116,6 @@ def get_links():
       'q': q,
       'limit': 30,
   }
-  if link_descriptions:
-    payload['linkDescriptions'] = 'yes'
   data = urllib.parse.urlencode(payload)
   req = urllib.request.Request('http://127.0.0.1:6391/search?' + data, headers=headers)
   try:
@@ -161,13 +168,29 @@ def get_links():
   except urllib.error.URLError as e:
     throw_error()
 
-def get_tags():
+def get_containers(type):
   payload = {
     'q': q,
-    'limit': 5,
+    'limit': limit,
   }
+  url = ''
+  anybox_url_prefix = ""
+  icon_path = ''
+  sub_title = ''
+
+  if type == 'tag':
+    url = 'http://127.0.0.1:6391/tags?'
+    anybox_url_prefix = 'anybox://tag/'
+    icon_path = './List Icons/tag.png'
+    sub_title = 'Tag'
+  else:
+    url = 'http://127.0.0.1:6391/folders?'
+    anybox_url_prefix = 'anybox://folder/'
+    icon_path = './List Icons/folder.png'
+    sub_title = 'Folder'
+
   data = urllib.parse.urlencode(payload)
-  req = urllib.request.Request('http://127.0.0.1:6391/tags?' + data)
+  req = urllib.request.Request(url + data)
   try: 
     resp = urllib.request.urlopen(req) 
     items = json.loads(resp.read())
@@ -175,14 +198,15 @@ def get_tags():
     for list_item in items:
       id = list_item['id']
       name = list_item['name']
-      anybox_url = 'anybox://tag/' + id
+      anybox_url = anybox_url_prefix + id
       markdown_url = '[' + name + ']' + '(' + anybox_url + ')'
       item = {
         'title': name,
-        'subtitle': 'Tag',
+        'subtitle': sub_title,
+        'variables': { 'type': type },
         'arg': [id],
         'icon': {
-          'path': './List Icons/tag.png'
+          'path': icon_path
         },
         'mods': {
           'alt': {
@@ -204,12 +228,15 @@ def get_tags():
   except urllib.error.URLError as e:
     throw_error()
 
-
 tags = []
+folders = []
 if show_tags:
-  tags = get_tags()
+  tags = get_containers('tag')
+if show_folders:
+  folders = get_containers('folder')
+
 links = get_links()
 result = {
-  'items': tags + links
+  'items': tags + folders + links
 }
 sys.stdout.write(json.dumps(result))

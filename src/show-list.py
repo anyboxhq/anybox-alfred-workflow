@@ -10,6 +10,8 @@ def list_icon(type, id):
     return url + 'tag.png'
   elif type == 'filter':
     return url + 'filter.png'
+  elif type == 'folder':
+    return url + 'folder.png'
   else:
     return ''
 
@@ -18,6 +20,8 @@ def list_url(type, id):
     return 'anybox://show?id=' + id
   elif type == 'tag':
     return 'anybox://tag/' + id
+  elif type == 'folder':
+    return 'anybox://folder/' + id
   elif type == 'filter':
     return 'anybox://filter/' + id
   else:
@@ -28,6 +32,8 @@ def list_type_name(type):
     return 'Preset'
   elif type == 'tag':
     return 'Tag'
+  elif type == 'folder':
+    return 'Folder'
   elif type == 'filter':
     return "Smart List"
   else:
@@ -65,12 +71,16 @@ def get_filters():
 def get_tags():
   return get_items('tags')
 
+def get_folders():
+  return get_items('folders')
+
 presets = get_presets()
 filters = get_filters()
 tags = get_tags()
+folders = get_folders()
 
 all =  {
-  'items': presets + filters + tags
+  'items': presets + filters + tags + folders
 }
 sys.stdout.write(json.dumps(all))
 

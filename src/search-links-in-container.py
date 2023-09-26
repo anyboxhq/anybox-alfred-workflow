@@ -7,8 +7,8 @@ from datetime import datetime
 api_key = os.getenv('api_key')
 show_full_urls = os.getenv('show_full_urls') == '1'
 show_dates = os.getenv('show_dates') == '1'
-tag_id = os.getenv('tag')
-link_descriptions = os.getenv('link_descriptions') == '1'
+container_id = os.getenv('id')
+container_type = os.getenv('type')
 
 q = '{query}'
 
@@ -32,12 +32,17 @@ def less_than_a_week(date):
         return True
     else:
         return False
+    
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
 
 def format_url(url):
     if url.startswith('https://'):
-        return url.removeprefix('https://')
+        return remove_prefix(url, 'https://')
     elif url.startswith('http://'):
-        return url.removeprefix('http://')
+        return remove_prefix(url, 'http://')
     else:
         return url
 
@@ -104,10 +109,11 @@ def get_links():
   payload = {
       'q': q,
       'limit': 30,
-      'tag': tag_id
   }
-  if link_descriptions:
-    payload['linkDescriptions'] = 'yes'
+  if container_type == 'tag':
+    payload['tag'] = container_id
+  else:
+    payload['folder'] = container_id
   data = urllib.parse.urlencode(payload)
   req = urllib.request.Request('http://127.0.0.1:6391/search?' + data, headers=headers)
   try:

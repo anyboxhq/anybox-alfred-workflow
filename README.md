@@ -28,23 +28,27 @@ For this workflow to work, Anybox needs to be running.
 
 4. Save Current Tab with Tags
 
-5. Save Clipboard
+5. Save Current Tab to Folder
 
-6. Save Clipboard with Tags
+6. Save Clipboard
 
-7. Save Note
+7. Save Clipboard with Tags
 
-8. Toggle Anydock
+8. Save Clipboard to Folder
 
-9. Toggle Stash Box
+9. Save Note
 
-10. Toggle Link Detection
+10. Toggle Anydock
 
-11. Switch Anydock Profile
+11. Toggle Stash Box
 
-12. Open All in Anydock Profile
+12. Toggle Link Detection
 
-13. Show List
+13. Switch Anydock Profile
+
+14. Open All in Anydock Profile
+
+15. Show List
 
 ## Feature Requests or Bug Reports
 

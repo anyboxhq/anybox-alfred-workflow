@@ -2,6 +2,10 @@
 
 Search links, save links, show Quick Save, toggle Anydock or do other things right in Alfred.
 
+![Search Links](./screenshots/1.png)
+
+![Search Links](./screenshots/2.png)
+
 ## Supported Version
 
 This workflow is developed and tested with Anybox 2.0 and Alfred 5.
@@ -49,6 +53,8 @@ For this workflow to work, Anybox needs to be running.
 14. Open All in Anydock Profile
 
 15. Show List
+
+![Search Links](./screenshots/3.png)
 
 ## Feature Requests or Bug Reports
 

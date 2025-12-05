@@ -26,33 +26,35 @@ For this workflow to work, Anybox needs to be running.
 
 1. Search Links
 
-2. Show Quick Save
+2. Search Notes
 
-3. Save Current Tab
+3. Show Quick Save
 
-4. Save Current Tab with Tags
+4. Save Current Tab
 
-5. Save Current Tab to Folder
+5. Save Current Tab with Tags
 
-6. Save Clipboard
+6. Save Current Tab to Folder
 
-7. Save Clipboard with Tags
+7. Save Clipboard
 
-8. Save Clipboard to Folder
+8. Save Clipboard with Tags
 
-9. Save Note
+9. Save Clipboard to Folder
 
-10. Toggle Anydock
+10. Save Note
 
-11. Toggle Stash Box
+11. Toggle Anydock
 
-12. Toggle Link Detection
+12. Toggle Stash Box
 
-13. Switch Anydock Profile
+13. Toggle Link Detection
 
-14. Open All in Anydock Profile
+14. Switch Anydock Profile
 
-15. Show List
+15. Open All in Anydock Profile
+
+16. Show List
 
 ![Search Links](./screenshots/3.png)
 

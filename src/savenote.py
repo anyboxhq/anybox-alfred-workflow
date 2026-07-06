@@ -2,6 +2,7 @@ from urllib import request
 import urllib.error
 import json
 import sys
+import os
 
 note = ''
 if len(sys.argv) >= 2:
@@ -11,13 +12,14 @@ payload = {
 	'note': note
 }
 data = json.dumps(payload).encode("utf-8")
-headers = {'Content-Type': 'application/json'}
+api_key = os.getenv('api_key')
+headers = {'Content-Type': 'application/json', 'x-api-key': api_key}
 req = request.Request('http://127.0.0.1:6391/save', headers=headers, data=data, method='POST')
 
 error_feedback = {
   'items': [
     {
-      'title': 'It looks like Anybox it’s not running or haven’t installed.',
+      'title': 'It looks like Anybox is not running or hasn’t been installed.',
       'subtitle': 'Press ⏎ to open Anybox or press ⌘ + ⏎ to install Anybox in Mac App Store.',
       'arg': ['anybox://show'],
       'mods': {
@@ -34,6 +36,6 @@ error_feedback = {
 try:
     request.urlopen(req)
 except urllib.error.HTTPError as e:
-    sys.stdout.write(error_feedback)
+    sys.stdout.write(json.dumps(error_feedback))
 except urllib.error.URLError as e:
-    sys.stdout.write(error_feedback)
+    sys.stdout.write(json.dumps(error_feedback))

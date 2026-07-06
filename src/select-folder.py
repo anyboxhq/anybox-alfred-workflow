@@ -6,7 +6,7 @@ import json
 error_feedback = {
   'items': [
     {
-      'title': 'It looks like Anybox it’s not running or haven’t installed.',
+      'title': 'It looks like Anybox is not running or hasn’t been installed.',
       'subtitle': 'Press ⏎ to open Anybox or press ⌘ + ⏎ to install Anybox in Mac App Store.',
       'arg': ['anybox://show'],
       'mods': {

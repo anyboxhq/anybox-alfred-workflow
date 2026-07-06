@@ -45,7 +45,7 @@ def format_date(original):
     if is_today(date):
         return 'Today at ' + date.astimezone(tz).strftime("%H:%M")
     elif is_yesteryday(date):
-        return 'Yesterady at ' + date.astimezone(tz).strftime("%H:%M")
+        return 'Yesterday at ' + date.astimezone(tz).strftime("%H:%M")
     elif less_than_a_week(date):
         return date.astimezone(tz).strftime("%b %d, %Y at %H:%M")
     return date.astimezone(tz).strftime("%b %d, %Y")
@@ -66,7 +66,7 @@ def throw_error():
   error_feedback = {
     'items': [
       {
-        'title': 'It looks like Anybox it’s not running or haven’t installed.',
+        'title': 'It looks like Anybox is not running or hasn’t been installed.',
         'subtitle': 'Press ⏎ to open Anybox or press ⌘ + ⏎ to install Anybox in Mac App Store.',
         'arg': ['anybox://show'],
         'mods': {
@@ -80,6 +80,7 @@ def throw_error():
     ]
   }
   sys.stdout.write(json.dumps(error_feedback))
+  sys.exit(0)
 
 def get_notes():
   headers = {'x-api-key': api_key}

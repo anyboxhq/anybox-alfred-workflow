@@ -134,7 +134,8 @@ def get_links():
         item = {
               'title': title,
               'subtitle': format_subtitle(link),
-              'arg': [url, link['id']],
+              'arg': url,
+              'variables': {'link_id': link['id']},
               'icon': {
                   'path': icon_relative_url + "/icon"
               },
